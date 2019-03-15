@@ -518,3 +518,52 @@ public class AdminController {
 
         contentPane.getChildren().add(mainBox);
     }
+
+    @FXML
+    private void archiveButtonClicked(ActionEvent event) {
+        configureButtons();
+        archiveButton.setGraphic(archiveSelectedIMV);
+
+        //clear old content
+        contentPane.getChildren().clear();
+
+        // ask for archive date
+        titleLabel.setText("Archiving");
+
+        //create text and textfield
+        VBox mainBox = new VBox();
+        mainBox.setSpacing(20);
+        mainBox.setAlignment(Pos.CENTER);
+
+        HBox box = new HBox();
+        contentPane.getChildren().add(mainBox);
+
+        box.setSpacing(5);
+        box.setAlignment(Pos.CENTER);
+
+        Label dateLabel = new Label("Cut Off Date:");
+        dateLabel.setFont(new Font("System", 24));
+
+        TextField dateTF = new TextField();
+        dateTF.setPromptText("YYYY-MM-DD");
+
+        Label errorLabel = new Label();
+        errorLabel.setTextFill(Paint.valueOf("#f5515f"));
+        errorLabel.setFont(new Font("System", 14));
+
+        Button confirmButton = new Button("Confirm");
+        confirmButton.setStyle("-fx-background-color: #e63347;" +
+                "-fx-background-radius: 7;" +
+                "-fx-text-fill: white");
+        confirmButton.setPrefSize(130, 40);
+
+        confirmButton.setOnAction(e-> {
+            if (dateTF.getText() != null) {
+                String cutoffDate = dateTF.getText().trim();
+                if (cutoffDate.length() > 10) {
+                    errorLabel.setText("Too long");
+                    return;
+                } else if (!isDate(cutoffDate)) {
+                    errorLabel.setText("Wrong date format");
+                    return;
+                }
