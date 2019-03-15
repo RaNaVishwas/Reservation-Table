@@ -452,3 +452,27 @@ private void ratingButtonClicked(ActionEvent event) throws SQLException {
     //Rating label
     Label ratingTitle = new Label("Average Rating: ");
     ratingTitle.setFont(new Font("System", 24));
+// 5 stars
+    String yellowStarURL = "Graphics/StarYellow.png";
+    String blankStarURL = "Graphics/StarBlank.png";
+
+    ImageView starBlank1 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+    ImageView starBlank2 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+    ImageView starBlank3 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+    ImageView starBlank4 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+    ImageView starBlank5 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+
+    Button star1 = new Button(); star1.setGraphic(starBlank1); star1.setStyle("-fx-background-color: transparent");
+    Button star2 = new Button(); star2.setGraphic(starBlank2); star2.setStyle("-fx-background-color: transparent");
+    Button star3 = new Button(); star3.setGraphic(starBlank3); star3.setStyle("-fx-background-color: transparent");
+    Button star4 = new Button(); star4.setGraphic(starBlank4); star4.setStyle("-fx-background-color: transparent");
+    Button star5 = new Button(); star5.setGraphic(starBlank5); star5.setStyle("-fx-background-color: transparent");
+
+    //get average rating
+    double avgRating = 0;
+    try {
+        avgRating = operation.getAverageRating();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        ratingTitle.setText("Error! Can't get average rating");
+    }
