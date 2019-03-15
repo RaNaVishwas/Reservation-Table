@@ -425,3 +425,56 @@ public class AdminController {
         // add hbox to content pane
         contentPane.getChildren().add(hbox);
     }
+
+@FXML
+    private void ratingButtonClicked(ActionEvent event) throws SQLException {
+        configureButtons();
+        ratingButton.setGraphic(ratingSelectedIMV);
+
+        //clear old content
+        contentPane.getChildren().clear();
+
+        // set up
+        titleLabel.setText("Rating and Feedback");
+
+        // rating box
+        HBox ratingBox = new HBox();
+        ratingBox.setAlignment(Pos.CENTER);
+        ratingBox.setSpacing(20);
+        ratingBox.setPadding(new Insets(10, 0, 10, 0));
+
+        //Rating label
+        Label ratingTitle = new Label("Average Rating: ");
+        ratingTitle.setFont(new Font("System", 24));
+
+        // 5 stars
+        String yellowStarURL = "Graphics/StarYellow.png";
+        String blankStarURL = "Graphics/StarBlank.png";
+
+        ImageView starBlank1 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+        ImageView starBlank2 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+        ImageView starBlank3 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+        ImageView starBlank4 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+        ImageView starBlank5 = new ImageView(new Image(getClass().getResourceAsStream("Graphics/StarBlank.png")));
+
+        Button star1 = new Button(); star1.setGraphic(starBlank1); star1.setStyle("-fx-background-color: transparent");
+        Button star2 = new Button(); star2.setGraphic(starBlank2); star2.setStyle("-fx-background-color: transparent");
+        Button star3 = new Button(); star3.setGraphic(starBlank3); star3.setStyle("-fx-background-color: transparent");
+        Button star4 = new Button(); star4.setGraphic(starBlank4); star4.setStyle("-fx-background-color: transparent");
+        Button star5 = new Button(); star5.setGraphic(starBlank5); star5.setStyle("-fx-background-color: transparent");
+
+        //get average rating
+        double avgRating = 0;
+        try {
+            avgRating = operation.getAverageRating();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            ratingTitle.setText("Error! Can't get average rating");
+        }
+
+        Button[] buttonlist = new Button[5];
+        buttonlist[0] = star1;
+        buttonlist[1] = star2;
+        buttonlist[2] = star3;
+        buttonlist[3] = star4;
+        buttonlist[4] = star5;
