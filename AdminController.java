@@ -122,3 +122,60 @@ public class AdminController {
         employeesIMV.setFitHeight(53);
         employeesSelectedIMV.setFitWidth(53);
         employeesSelectedIMV.setFitHeight(53);
+// rating
+        ratingIMV.setFitWidth(32);
+        ratingIMV.setFitHeight(69);
+        ratingSelectedIMV.setFitWidth(32);
+        ratingSelectedIMV.setFitHeight(69);
+
+        // archive
+        archiveIMV.setFitWidth(37);
+        archiveIMV.setFitHeight(51);
+        archiveSelectedIMV.setFitWidth(37);
+        archiveSelectedIMV.setFitHeight(51);
+
+    }
+
+    private void configureButtons() {
+        //Restaurant button
+        restaurantButton.setGraphic(restaurantIMV);
+        restaurantButton.setStyle("-fx-background-color: transparent");
+
+        //reservations button
+        reservationsButton.setGraphic(reservationsIMV);
+        reservationsButton.setStyle("-fx-background-color: transparent");
+
+        //customers button
+        customersButton.setGraphic(customersIMV);
+        customersButton.setStyle("-fx-background-color: transparent");
+
+        //employees button
+        employeesButton.setGraphic(employeesIMV);
+        employeesButton.setStyle("-fx-background-color: transparent");
+
+
+        //rating button
+        ratingButton.setGraphic(ratingIMV);
+        ratingButton.setStyle("-fx-background-color: transparent");
+
+
+        //archive button
+        archiveButton.setGraphic(archiveIMV);
+        archiveButton.setStyle("-fx-background-color: transparent");
+
+    }
+
+    private void getAllImageViewsForButtons() {
+        restaurantIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/indianpng.png")));
+        reservationsIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations.png")));
+        customersIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers.png")));
+        employeesIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees.png")));
+        ratingIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating.png")));
+        archiveIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive.png")));
+
+
+        reservationsSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations_selected.png")));
+        customersSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers_selected.png")));
+        employeesSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees_selected.png")));
+        ratingSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating_selected.png")));
+        archiveSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive_selected.png")));
