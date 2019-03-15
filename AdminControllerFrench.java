@@ -545,3 +545,54 @@ private void archiveButtonClicked(ActionEvent event) {
 
     box.setSpacing(5);
     box.setAlignment(Pos.CENTER);
+     Label dateLabel = new Label("Cut Off Date:");
+    dateLabel.setFont(new Font("System", 24));
+
+    TextField dateTF = new TextField();
+    dateTF.setPromptText("YYYY-MM-DD");
+
+    Label errorLabel = new Label();
+    errorLabel.setTextFill(Paint.valueOf("#f5515f"));
+    errorLabel.setFont(new Font("System", 14));
+
+    Button confirmButton = new Button("Confirm");
+    confirmButton.setStyle("-fx-background-color: #e63347;" +
+            "-fx-background-radius: 7;" +
+            "-fx-text-fill: white");
+    confirmButton.setPrefSize(130, 40);
+
+    confirmButton.setOnAction(e-> {
+        if (dateTF.getText() != null) {
+            String cutoffDate = dateTF.getText().trim();
+            if (cutoffDate.length() > 10) {
+                errorLabel.setText("Too long");
+                return;
+            } else if (!isDate(cutoffDate)) {
+                errorLabel.setText("Wrong date format");
+                return;
+            }
+
+            boolean success = operation.archive(cutoffDate);
+            if (success) {
+                //set up content
+                contentPane.getChildren().clear();
+
+                TableView table = new TableView();
+                TableColumn fnCol = new TableColumn("First Name");
+                fnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+                TableColumn lnCol = new TableColumn("Last Name");
+                lnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+                TableColumn emailCol = new TableColumn("Email");
+                emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+                TableColumn lvCol = new TableColumn("Updated At");
+                lvCol.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
+                TableColumn discountCol = new TableColumn("Discount");
+                discountCol.setCellValueFactory(new PropertyValueFactory<>("discount"));
+
+                table.getColumns().addAll(fnCol, lnCol, emailCol, lvCol, discountCol);
+                ObservableList<Customer> data = FXCollections.observableArrayList(operation.getArchivedCustomers());
+                table.setItems(data);
+
+                contentPane.getChildren().add(table);
+
+                titleLabel.setText("Archived Customers");
