@@ -398,3 +398,57 @@ private void employeesButtonClicked(ActionEvent event) {
     table.setItems(data);
     table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+// Set up for employees and also customers
+    ObservableList<Employee> rightData = FXCollections.observableArrayList(operation.getEmployeesWhoAreCustomers());
+    TableView rightTable = new TableView();
+
+    //Add title for all employees
+    Text rightTitle = new Text("Employees Are Customers");
+    rightTitle.setFont(new Font("System",24));
+
+    TableColumn RfnCol = new TableColumn("First Name");
+    RfnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    TableColumn RlnCol = new TableColumn("Last Name");
+    RlnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    TableColumn RpositionCol = new TableColumn("Position");
+    RpositionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+    TableColumn RemailCol = new TableColumn("Email");
+    RemailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+    TableColumn RlastworkedCol = new TableColumn("Last Worked");
+    RlastworkedCol.setCellValueFactory(new PropertyValueFactory<>("lastWorked"));
+
+    rightTable.getColumns().addAll(RfnCol, RlnCol, RpositionCol, RemailCol, RlastworkedCol);
+    rightTable.setItems(rightData);
+
+    //add right table to the right box
+    rightBox.getChildren().addAll(rightTitle, rightTable);
+    rightBox.setSpacing(5);
+
+    hbox.getChildren().addAll(leftBox, rightBox);
+    hbox.setSpacing(10);
+    hbox.setAlignment(Pos.CENTER);
+
+    // add hbox to content pane
+    contentPane.getChildren().add(hbox);
+}
+
+@FXML
+private void ratingButtonClicked(ActionEvent event) throws SQLException {
+    configureButtons();
+    ratingButton.setGraphic(ratingSelectedIMV);
+
+    //clear old content
+    contentPane.getChildren().clear();
+
+    // set up
+    titleLabel.setText("Rating and Feedback");
+
+    // rating box
+    HBox ratingBox = new HBox();
+    ratingBox.setAlignment(Pos.CENTER);
+    ratingBox.setSpacing(20);
+    ratingBox.setPadding(new Insets(10, 0, 10, 0));
+
+    //Rating label
+    Label ratingTitle = new Label("Average Rating: ");
+    ratingTitle.setFont(new Font("System", 24));
