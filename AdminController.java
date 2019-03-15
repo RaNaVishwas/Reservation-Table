@@ -65,3 +65,60 @@ public class AdminController {
     private ImageView employeesIMV;
     private ImageView ratingIMV;
     private ImageView archiveIMV;
+
+    // all the images for selected buttons
+    private ImageView reservationsSelectedIMV;
+    private ImageView customersSelectedIMV;
+    private ImageView employeesSelectedIMV;
+    private ImageView ratingSelectedIMV;
+    private ImageView archiveSelectedIMV;
+
+    @FXML
+    void initialize() {
+        getAllImageViewsForButtons();
+        configureWidthHeightForImageViews();
+        configureButtons();
+        contentPane.setAlignment(Pos.CENTER);
+
+
+        //show all customers and all employees
+        titleLabel.setText("All Customers and All Employees");
+        TableView table = new TableView();
+
+        TableColumn fnCol = new TableColumn("First Name");
+        fnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn lnCol = new TableColumn("Last Name");
+        lnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn emailCol = new TableColumn("email");
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        table.getColumns().addAll(fnCol, lnCol, emailCol);
+
+        ObservableList<Person> data = FXCollections.observableArrayList(operation.getAllCustomersAndEmployees());
+        table.setItems(data);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        contentPane.getChildren().add(table);
+    }
+
+    private void configureWidthHeightForImageViews() {
+        //Restaurant
+        restaurantIMV.setFitWidth(51);
+        restaurantIMV.setFitHeight(41);
+
+        //reservations
+        reservationsIMV.setFitWidth(63);
+        reservationsIMV.setFitHeight(84);
+        reservationsSelectedIMV.setFitWidth(63);
+        reservationsSelectedIMV.setFitHeight(84);
+
+        //customers
+        customersIMV.setFitWidth(53);
+        customersIMV.setFitHeight(65);
+        customersSelectedIMV.setFitWidth(53);
+        customersSelectedIMV.setFitHeight(65);
+
+        // employees
+        employeesIMV.setFitWidth(53);
+        employeesIMV.setFitHeight(53);
+        employeesSelectedIMV.setFitWidth(53);
+        employeesSelectedIMV.setFitHeight(53);
