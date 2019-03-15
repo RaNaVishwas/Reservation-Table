@@ -186,3 +186,22 @@ private void getAllImageViewsForButtons() {
 
 
 }
+@FXML
+private void goHomeScreen(ActionEvent event) {
+
+    //get reference to WelcomeScreen stage
+    Stage stage = (Stage) mainGridPane.getScene().getWindow();
+
+    //load up WelcomeScene FXML document
+    Parent root = null;
+    try {
+        root = FXMLLoader.load(getClass().getResource("WelcomeFrenchScene.fxml"));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    Scene scene = new Scene(root, 1024, 720);
+    stage.setTitle("Restaurant Reservation System");
+    stage.setScene(scene);
+    stage.show();
+}
