@@ -567,3 +567,43 @@ public class AdminController {
                     errorLabel.setText("Wrong date format");
                     return;
                 }
+
+boolean success = operation.archive(cutoffDate);
+                if (success) {
+                    //set up content
+                    contentPane.getChildren().clear();
+
+                    TableView table = new TableView();
+                    TableColumn fnCol = new TableColumn("First Name");
+                    fnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+                    TableColumn lnCol = new TableColumn("Last Name");
+                    lnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+                    TableColumn emailCol = new TableColumn("Email");
+                    emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+                    TableColumn lvCol = new TableColumn("Updated At");
+                    lvCol.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
+                    TableColumn discountCol = new TableColumn("Discount");
+                    discountCol.setCellValueFactory(new PropertyValueFactory<>("discount"));
+
+                    table.getColumns().addAll(fnCol, lnCol, emailCol, lvCol, discountCol);
+                    ObservableList<Customer> data = FXCollections.observableArrayList(operation.getArchivedCustomers());
+                    table.setItems(data);
+
+                    contentPane.getChildren().add(table);
+
+                    titleLabel.setText("Archived Customers");
+
+                } else {
+                    titleLabel.setText("Can't archive");
+                    return;
+                }
+
+            } else {
+                errorLabel.setText("Please enter a date");
+                return;
+            }
+        });
+
+        box.getChildren().addAll(dateLabel, dateTF, errorLabel);
+        mainBox.getChildren().addAll(box, confirmButton);
+    }
