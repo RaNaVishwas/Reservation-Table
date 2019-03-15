@@ -503,3 +503,20 @@ private void ratingButtonClicked(ActionEvent event) throws SQLException {
     for (Rating r : list) {
         feedback += r.getFeedback() + "\n\n";
     }
+Text feedbackText = new Text(feedback);
+    feedbackText.setFont(new Font("System", 14));
+
+    ScrollPane scrollPane = new ScrollPane();
+    scrollPane.setContent(feedbackText);
+
+    //Add children nodes to appropriate boxes
+    ratingBox.getChildren().addAll(ratingTitle, star1, star2, star3, star4, star5);
+    feedBackBox.getChildren().addAll(feedBackLabel, scrollPane);
+
+    //main box
+    VBox mainBox = new VBox();
+    mainBox.setSpacing(40);
+    mainBox.getChildren().addAll(ratingBox, feedBackBox);
+
+    contentPane.getChildren().add(mainBox);
+}
