@@ -102,3 +102,101 @@ void initialize() {
     table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     contentPane.getChildren().add(table);
 }
+
+private void configureWidthHeightForImageViews() {
+    //Restaurant
+    restaurantIMV.setFitWidth(51);
+    restaurantIMV.setFitHeight(41);
+
+    //reservations
+    reservationsIMV.setFitWidth(63);
+    reservationsIMV.setFitHeight(84);
+    reservationsSelectedIMV.setFitWidth(63);
+    reservationsSelectedIMV.setFitHeight(84);
+
+    //customers
+    customersIMV.setFitWidth(53);
+    customersIMV.setFitHeight(65);
+    customersSelectedIMV.setFitWidth(53);
+    customersSelectedIMV.setFitHeight(65);
+
+    // employees
+    employeesIMV.setFitWidth(53);
+    employeesIMV.setFitHeight(53);
+    employeesSelectedIMV.setFitWidth(53);
+    employeesSelectedIMV.setFitHeight(53);
+
+    // rating
+    ratingIMV.setFitWidth(32);
+    ratingIMV.setFitHeight(69);
+    ratingSelectedIMV.setFitWidth(32);
+    ratingSelectedIMV.setFitHeight(69);
+
+    // archive
+    archiveIMV.setFitWidth(37);
+    archiveIMV.setFitHeight(51);
+    archiveSelectedIMV.setFitWidth(37);
+    archiveSelectedIMV.setFitHeight(51);
+
+}
+
+private void configureButtons() {
+    //Restaurant button
+    restaurantButton.setGraphic(restaurantIMV);
+    restaurantButton.setStyle("-fx-background-color: transparent");
+
+    //reservations button
+    reservationsButton.setGraphic(reservationsIMV);
+    reservationsButton.setStyle("-fx-background-color: transparent");
+
+    //customers button
+    customersButton.setGraphic(customersIMV);
+    customersButton.setStyle("-fx-background-color: transparent");
+
+    //employees button
+    employeesButton.setGraphic(employeesIMV);
+    employeesButton.setStyle("-fx-background-color: transparent");
+
+
+    //rating button
+    ratingButton.setGraphic(ratingIMV);
+    ratingButton.setStyle("-fx-background-color: transparent");
+
+
+    //archive button
+    archiveButton.setGraphic(archiveIMV);
+    archiveButton.setStyle("-fx-background-color: transparent");
+
+}
+
+private void getAllImageViewsForButtons() {
+    restaurantIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/chippng.jpg")));
+    reservationsIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations.png")));
+    customersIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers.png")));
+    employeesIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees.png")));
+    ratingIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating.png")));
+    archiveIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive.png")));
+
+
+    reservationsSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations_selected.png")));
+    customersSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers_selected.png")));
+    employeesSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees_selected.png")));
+    ratingSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating_selected.png")));
+    archiveSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive_selected.png")));
+
+
+}
+
+@FXML
+private void goHomeScreen(ActionEvent event) {
+
+    //get reference to WelcomeScreen stage
+    Stage stage = (Stage) mainGridPane.getScene().getWindow();
+
+    //load up WelcomeScene FXML document
+    Parent root = null;
+    try {
+        root = FXMLLoader.load(getClass().getResource("WelcomeChipScene.fxml"));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
