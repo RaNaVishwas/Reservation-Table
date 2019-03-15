@@ -347,3 +347,47 @@ public class AdminController {
         box.getChildren().addAll(cHeader, cTable);
         scrollPane.setContent(box);
     }
+@FXML
+    private void employeesButtonClicked(ActionEvent event) {
+        configureButtons();
+        employeesButton.setGraphic(employeesSelectedIMV);
+        //Clear old content
+        contentPane.getChildren().clear();
+
+        titleLabel.setText("Employees");
+
+        // 2 horizontal boxes for All Employees and Employees are Customers
+        HBox hbox = new HBox();
+        hbox.setSpacing(5);
+
+        //2 vboxes for each hbox
+        VBox leftBox = new VBox();
+        VBox rightBox = new VBox();
+
+
+        // Set up All employees
+        ObservableList<Employee> data = FXCollections.observableArrayList(operation.getAllEmployees());
+        TableView table = new TableView();
+
+        //Add title for all employees
+        Text leftTitle = new Text("All Employees");
+        leftTitle.setFont(new Font("System",24));
+
+        //add left table and title to left box
+        leftBox.getChildren().addAll(leftTitle, table);
+        leftBox.setSpacing(5);
+
+        TableColumn efnCol = new TableColumn("First Name");
+        efnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn elnCol = new TableColumn("Last Name");
+        elnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn epositionCol = new TableColumn("Position");
+        epositionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        TableColumn eemailCol = new TableColumn("Email");
+        eemailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        TableColumn elastworkedCol = new TableColumn("Last Worked");
+        elastworkedCol.setCellValueFactory(new PropertyValueFactory<>("lastWorked"));
+
+        table.getColumns().addAll(efnCol, elnCol, epositionCol, eemailCol, elastworkedCol);
+        table.setItems(data);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
