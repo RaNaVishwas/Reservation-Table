@@ -157,3 +157,52 @@ public class AdminControllerVapino {
         //employees button
         employeesButton.setGraphic(employeesIMV);
         employeesButton.setStyle("-fx-background-color: transparent");
+
+        //rating button
+        ratingButton.setGraphic(ratingIMV);
+        ratingButton.setStyle("-fx-background-color: transparent");
+
+
+        //archive button
+        archiveButton.setGraphic(archiveIMV);
+        archiveButton.setStyle("-fx-background-color: transparent");
+
+    }
+
+    private void getAllImageViewsForButtons() {
+        restaurantIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/pastapng.jpg")));
+        reservationsIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations.png")));
+        customersIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers.png")));
+        employeesIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees.png")));
+        ratingIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating.png")));
+        archiveIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive.png")));
+
+
+        reservationsSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations_selected.png")));
+        customersSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers_selected.png")));
+        employeesSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees_selected.png")));
+        ratingSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating_selected.png")));
+        archiveSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive_selected.png")));
+
+
+    }
+
+    @FXML
+    private void goHomeScreen(ActionEvent event) {
+
+        //get reference to WelcomeScreen stage
+        Stage stage = (Stage) mainGridPane.getScene().getWindow();
+
+        //load up WelcomeScene FXML document
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("WelcomeVapinoScene.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root, 1024, 720);
+        stage.setTitle("Restaurant Reservation System");
+        stage.setScene(scene);
+        stage.show();
+    }
