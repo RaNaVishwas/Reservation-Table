@@ -590,3 +590,33 @@ public class AdminControllerVapino {
                     table.getColumns().addAll(fnCol, lnCol, emailCol, lvCol, discountCol);
                     ObservableList<Customer> data = FXCollections.observableArrayList(operation.getArchivedCustomers());
                     table.setItems(data);
+
+                    contentPane.getChildren().add(table);
+
+                    titleLabel.setText("Archived Customers");
+
+                } else {
+                    titleLabel.setText("Can't archive");
+                    return;
+                }
+
+            } else {
+                errorLabel.setText("Please enter a date");
+                return;
+            }
+        });
+
+        box.getChildren().addAll(dateLabel, dateTF, errorLabel);
+        mainBox.getChildren().addAll(box, confirmButton);
+    }
+
+    /**
+     * Check if a given string is in a date format yyyy-mm-dd
+     * @author Vishwas
+     * @return true if a string is in format yyyy-mm-dd, false otherwise
+     */
+    static boolean isDate(String s) {
+        return s.matches("([0-9]{4})-([0-9]{2})-([0-9]{2})");
+    }
+}
+
