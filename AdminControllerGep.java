@@ -165,3 +165,20 @@ private void configureButtons() {
     archiveButton.setStyle("-fx-background-color: transparent");
 
 }
+private void getAllImageViewsForButtons() {
+    restaurantIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/boxpizza.png")));
+    reservationsIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations.png")));
+    customersIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers.png")));
+    employeesIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees.png")));
+    ratingIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating.png")));
+    archiveIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive.png")));
+
+
+    reservationsSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_reservations_selected.png")));
+    customersSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_customers_selected.png")));
+    employeesSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_employees_selected.png")));
+    ratingSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_rating_selected.png")));
+    archiveSelectedIMV = new ImageView(new Image(getClass().getResourceAsStream("Graphics/a_archive_selected.png")));
+
+
+}
