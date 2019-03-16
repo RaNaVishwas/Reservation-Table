@@ -370,3 +370,63 @@ public class AdminControllerVapino {
         VBox leftBox = new VBox();
         VBox rightBox = new VBox();
 
+// Set up All employees
+        ObservableList<Employee> data = FXCollections.observableArrayList(operation.getAllEmployees());
+        TableView table = new TableView();
+
+        //Add title for all employees
+        Text leftTitle = new Text("All Employees");
+        leftTitle.setFont(new Font("System",24));
+
+        //add left table and title to left box
+        leftBox.getChildren().addAll(leftTitle, table);
+        leftBox.setSpacing(5);
+
+        TableColumn efnCol = new TableColumn("First Name");
+        efnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn elnCol = new TableColumn("Last Name");
+        elnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn epositionCol = new TableColumn("Position");
+        epositionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        TableColumn eemailCol = new TableColumn("Email");
+        eemailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        TableColumn elastworkedCol = new TableColumn("Last Worked");
+        elastworkedCol.setCellValueFactory(new PropertyValueFactory<>("lastWorked"));
+
+        table.getColumns().addAll(efnCol, elnCol, epositionCol, eemailCol, elastworkedCol);
+        table.setItems(data);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        // Set up for employees and also customers
+        ObservableList<Employee> rightData = FXCollections.observableArrayList(operation.getEmployeesWhoAreCustomers());
+        TableView rightTable = new TableView();
+
+        //Add title for all employees
+        Text rightTitle = new Text("Employees Are Customers");
+        rightTitle.setFont(new Font("System",24));
+
+        TableColumn RfnCol = new TableColumn("First Name");
+        RfnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn RlnCol = new TableColumn("Last Name");
+        RlnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn RpositionCol = new TableColumn("Position");
+        RpositionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        TableColumn RemailCol = new TableColumn("Email");
+        RemailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        TableColumn RlastworkedCol = new TableColumn("Last Worked");
+        RlastworkedCol.setCellValueFactory(new PropertyValueFactory<>("lastWorked"));
+
+        rightTable.getColumns().addAll(RfnCol, RlnCol, RpositionCol, RemailCol, RlastworkedCol);
+        rightTable.setItems(rightData);
+
+        //add right table to the right box
+        rightBox.getChildren().addAll(rightTitle, rightTable);
+        rightBox.setSpacing(5);
+
+        hbox.getChildren().addAll(leftBox, rightBox);
+        hbox.setSpacing(10);
+        hbox.setAlignment(Pos.CENTER);
+
+        // add hbox to content pane
+        contentPane.getChildren().add(hbox);
+    }
