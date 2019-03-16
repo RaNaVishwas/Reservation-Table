@@ -475,3 +475,49 @@ public class AdminControllerVapino {
             e.printStackTrace();
             ratingTitle.setText("Error! Can't get average rating");
         }
+ Button[] buttonlist = new Button[5];
+        buttonlist[0] = star1;
+        buttonlist[1] = star2;
+        buttonlist[2] = star3;
+        buttonlist[3] = star4;
+        buttonlist[4] = star5;
+
+        for (int i = 0; i < Math.floor(avgRating); i++) {
+            ImageView image = new ImageView(new Image(getClass().getResourceAsStream(yellowStarURL)));
+            buttonlist[i].setGraphic(image);
+        }
+
+        // feedback box
+        VBox feedBackBox = new VBox();
+        feedBackBox.setAlignment(Pos.CENTER);
+        feedBackBox.setSpacing(20);
+
+        //Feedback title
+        Label feedBackLabel = new Label("Feedback:");
+        feedBackLabel.setFont(new Font("System", 24));
+
+        //get feedback string
+        String feedback = "";
+        ArrayList<Rating> list = operation.getRatingsAndFeedbacks();
+
+        for (Rating r : list) {
+            feedback += r.getFeedback() + "\n\n";
+        }
+
+        Text feedbackText = new Text(feedback);
+        feedbackText.setFont(new Font("System", 14));
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(feedbackText);
+
+        //Add children nodes to appropriate boxes
+        ratingBox.getChildren().addAll(ratingTitle, star1, star2, star3, star4, star5);
+        feedBackBox.getChildren().addAll(feedBackLabel, scrollPane);
+
+        //main box
+        VBox mainBox = new VBox();
+        mainBox.setSpacing(40);
+        mainBox.getChildren().addAll(ratingBox, feedBackBox);
+
+        contentPane.getChildren().add(mainBox);
+    }
