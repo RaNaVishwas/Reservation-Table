@@ -101,3 +101,39 @@ void initialize() {
     table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     contentPane.getChildren().add(table);
 }
+private void configureWidthHeightForImageViews() {
+    //Restaurant
+    restaurantIMV.setFitWidth(51);
+    restaurantIMV.setFitHeight(41);
+
+    //reservations
+    reservationsIMV.setFitWidth(63);
+    reservationsIMV.setFitHeight(84);
+    reservationsSelectedIMV.setFitWidth(63);
+    reservationsSelectedIMV.setFitHeight(84);
+
+    //customers
+    customersIMV.setFitWidth(53);
+    customersIMV.setFitHeight(65);
+    customersSelectedIMV.setFitWidth(53);
+    customersSelectedIMV.setFitHeight(65);
+
+    // employees
+    employeesIMV.setFitWidth(53);
+    employeesIMV.setFitHeight(53);
+    employeesSelectedIMV.setFitWidth(53);
+    employeesSelectedIMV.setFitHeight(53);
+
+    // rating
+    ratingIMV.setFitWidth(32);
+    ratingIMV.setFitHeight(69);
+    ratingSelectedIMV.setFitWidth(32);
+    ratingSelectedIMV.setFitHeight(69);
+
+    // archive
+    archiveIMV.setFitWidth(37);
+    archiveIMV.setFitHeight(51);
+    archiveSelectedIMV.setFitWidth(37);
+    archiveSelectedIMV.setFitHeight(51);
+
+}
