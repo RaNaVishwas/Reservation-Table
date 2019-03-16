@@ -141,3 +141,31 @@ public class AdminControllerSushi {
 
     }
 
+    private void configureButtons() {
+        //Restaurant button
+        restaurantButton.setGraphic(restaurantIMV);
+        restaurantButton.setStyle("-fx-background-color: transparent");
+
+        //reservations button
+        reservationsButton.setGraphic(reservationsIMV);
+        reservationsButton.setStyle("-fx-background-color: transparent");
+
+        //customers button
+        customersButton.setGraphic(customersIMV);
+        customersButton.setStyle("-fx-background-color: transparent");
+
+        //employees button
+        employeesButton.setGraphic(employeesIMV);
+        employeesButton.setStyle("-fx-background-color: transparent");
+
+
+        //rating button
+        ratingButton.setGraphic(ratingIMV);
+        ratingButton.setStyle("-fx-background-color: transparent");
+
+
+        //archive button
+        archiveButton.setGraphic(archiveIMV);
+        archiveButton.setStyle("-fx-background-color: transparent");
+
+    }
