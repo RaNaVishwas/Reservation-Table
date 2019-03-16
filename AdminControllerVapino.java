@@ -84,3 +84,76 @@ public class AdminControllerVapino {
         configureWidthHeightForImageViews();
         configureButtons();
         contentPane.setAlignment(Pos.CENTER);
+
+//show all customers and all employees
+        titleLabel.setText("All Customers and All Employees");
+        TableView table = new TableView();
+
+        TableColumn fnCol = new TableColumn("First Name");
+        fnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn lnCol = new TableColumn("Last Name");
+        lnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn emailCol = new TableColumn("email");
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        table.getColumns().addAll(fnCol, lnCol, emailCol);
+
+        ObservableList<Person> data = FXCollections.observableArrayList(operation.getAllCustomersAndEmployees());
+        table.setItems(data);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        contentPane.getChildren().add(table);
+    }
+
+    private void configureWidthHeightForImageViews() {
+        //Restaurant
+        restaurantIMV.setFitWidth(51);
+        restaurantIMV.setFitHeight(41);
+
+        //reservations
+        reservationsIMV.setFitWidth(63);
+        reservationsIMV.setFitHeight(84);
+        reservationsSelectedIMV.setFitWidth(63);
+        reservationsSelectedIMV.setFitHeight(84);
+
+        //customers
+        customersIMV.setFitWidth(53);
+        customersIMV.setFitHeight(65);
+        customersSelectedIMV.setFitWidth(53);
+        customersSelectedIMV.setFitHeight(65);
+
+        // employees
+        employeesIMV.setFitWidth(53);
+        employeesIMV.setFitHeight(53);
+        employeesSelectedIMV.setFitWidth(53);
+        employeesSelectedIMV.setFitHeight(53);
+
+        // rating
+        ratingIMV.setFitWidth(32);
+        ratingIMV.setFitHeight(69);
+        ratingSelectedIMV.setFitWidth(32);
+        ratingSelectedIMV.setFitHeight(69);
+
+        // archive
+        archiveIMV.setFitWidth(37);
+        archiveIMV.setFitHeight(51);
+        archiveSelectedIMV.setFitWidth(37);
+        archiveSelectedIMV.setFitHeight(51);
+
+    }
+
+    private void configureButtons() {
+        //Restaurant button
+        restaurantButton.setGraphic(restaurantIMV);
+        restaurantButton.setStyle("-fx-background-color: transparent");
+
+        //reservations button
+        reservationsButton.setGraphic(reservationsIMV);
+        reservationsButton.setStyle("-fx-background-color: transparent");
+
+        //customers button
+        customersButton.setGraphic(customersIMV);
+        customersButton.setStyle("-fx-background-color: transparent");
+
+        //employees button
+        employeesButton.setGraphic(employeesIMV);
+        employeesButton.setStyle("-fx-background-color: transparent");
