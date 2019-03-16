@@ -75,3 +75,29 @@ private ImageView customersSelectedIMV;
 private ImageView employeesSelectedIMV;
 private ImageView ratingSelectedIMV;
 private ImageView archiveSelectedIMV;
+@FXML
+void initialize() {
+    getAllImageViewsForButtons();
+    configureWidthHeightForImageViews();
+    configureButtons();
+    contentPane.setAlignment(Pos.CENTER);
+
+
+    //show all customers and all employees
+    titleLabel.setText("All Customers and All Employees");
+    TableView table = new TableView();
+
+    TableColumn fnCol = new TableColumn("First Name");
+    fnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    TableColumn lnCol = new TableColumn("Last Name");
+    lnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    TableColumn emailCol = new TableColumn("email");
+    emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+    table.getColumns().addAll(fnCol, lnCol, emailCol);
+
+    ObservableList<Person> data = FXCollections.observableArrayList(operation.getAllCustomersAndEmployees());
+    table.setItems(data);
+    table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    contentPane.getChildren().add(table);
+}
