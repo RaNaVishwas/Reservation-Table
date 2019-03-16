@@ -201,3 +201,57 @@ private void goHomeScreen(ActionEvent event) {
     stage.setScene(scene);
     stage.show();
 }
+@FXML
+private void reservationsButtonClicked(ActionEvent event) {
+    configureButtons();
+    reservationsButton.setGraphic(reservationsSelectedIMV);
+
+    //Clear the content of contentPane
+    contentPane.getChildren().clear();
+
+    //Set title
+    titleLabel.setText("Reservations");
+
+    // Make box for weekly availability and reservations
+    VBox box = new VBox();
+    box.setSpacing(10);
+    box.setAlignment(Pos.TOP_CENTER);
+    box.setPrefWidth(900);
+
+    // box for availability
+    VBox abox = new VBox();
+    box.setSpacing(10);
+    box.setAlignment(Pos.TOP_CENTER);
+    box.setPrefWidth(900);
+
+    // box for reservations
+    VBox resbox = new VBox();
+    box.setSpacing(10);
+    box.setAlignment(Pos.TOP_CENTER);
+    box.setPrefWidth(900);
+
+    //set up for weekly table availability
+    Text aHeader = new Text("Tables still available");
+    aHeader.setFont(new Font("System", 24));
+
+    TableView aTable = new TableView();
+    TableColumn aDateCol = new TableColumn("Date");
+    aDateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+    TableColumn tablesCol = new TableColumn("Tables Available");
+    tablesCol.setCellValueFactory(new PropertyValueFactory<>("tablesAvailable"));
+
+    //add table and title to availability box
+    abox.getChildren().addAll(aHeader, aTable);
+    abox.setSpacing(5);
+
+    //set width for all cols
+    aDateCol.setMinWidth(100);
+    tablesCol.setMinWidth(100);
+
+    aTable.getColumns().addAll(aDateCol, tablesCol);
+    //Populate data to the table view
+    operation.callDates();
+    ObservableList<Availability> adata = FXCollections.observableArrayList(operation.getWeeklyAvailability());
+    aTable.setItems(adata);
+    aTable.setMaxHeight(235);
+    aTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
