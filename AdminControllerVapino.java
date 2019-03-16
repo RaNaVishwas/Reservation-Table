@@ -304,3 +304,69 @@ public class AdminControllerVapino {
         box.getChildren().addAll(abox, resbox);
         contentPane.getChildren().add(box);
     }
+@FXML
+    private void customersButtonClicked(ActionEvent event) {
+        configureButtons();
+        
+        customersButton.setGraphic(customersSelectedIMV);
+
+        //Clear old content
+        contentPane.getChildren().clear();
+
+        titleLabel.setText("Customer Information");
+
+        ScrollPane scrollPane = new ScrollPane();
+
+        contentPane.getChildren().add(scrollPane);
+
+        VBox box = new VBox();
+        box.setSpacing(10);
+        box.setAlignment(Pos.TOP_CENTER);
+        box.setPrefWidth(900);
+
+        //set up for ALL CUSTOMERS
+        Text cHeader = new Text("All Customers");
+        cHeader.setFont(new Font("System", 24));
+        
+        
+        ObservableList<Customer> data = FXCollections.observableArrayList(operation.getAllCustomers());
+        TableView cTable = new TableView();
+
+        TableColumn cfnCol = new TableColumn("First Name");
+        cfnCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn clnCol = new TableColumn("Last Name");
+        clnCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn cEmailCol = new TableColumn("Email");
+        cEmailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        TableColumn cUpdatedAtCol = new TableColumn("Updated At");
+        cUpdatedAtCol.setCellValueFactory(new PropertyValueFactory<>("updatedAt"));
+        TableColumn cDiscountCol = new TableColumn("Discount");
+        cDiscountCol.setCellValueFactory(new PropertyValueFactory<>("discount"));
+
+        cTable.getColumns().addAll(cfnCol, clnCol, cEmailCol, cUpdatedAtCol, cDiscountCol);
+        cTable.setItems(data);
+        
+        cTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        box.getChildren().addAll(cHeader, cTable);
+        scrollPane.setContent(box);
+    }
+
+    @FXML
+    private void employeesButtonClicked(ActionEvent event) {
+        configureButtons();
+        employeesButton.setGraphic(employeesSelectedIMV);
+
+        //Clear old content
+        contentPane.getChildren().clear();
+
+        titleLabel.setText("Employees");
+
+        // 2 horizontal boxes for All Employees and Employees are Customers
+        HBox hbox = new HBox();
+        hbox.setSpacing(5);
+
+        //2 vboxes for each hbox
+        VBox leftBox = new VBox();
+        VBox rightBox = new VBox();
+
