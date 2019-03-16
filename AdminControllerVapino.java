@@ -286,3 +286,21 @@ public class AdminControllerVapino {
         partySizeCol.setMinWidth(100);
         seatsCol.setMinWidth(100);
         dateCol.setMinWidth(300);
+
+        //add table and title to availability box
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(resTable);
+        scrollPane.setFitToWidth(true);
+        resbox.getChildren().addAll(resHeader, scrollPane);
+        resbox.setSpacing(5);
+
+        resTable.getColumns().addAll(firstNameCol, lastNameCol, tidCol, partySizeCol, seatsCol, dateCol);
+        //Populate data to the table view
+        ObservableList<ReservationInfo> resdata = FXCollections.observableArrayList(operation.getAllReservations());
+        resTable.setItems(resdata);
+        resTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        //add table view to content pane
+        box.getChildren().addAll(abox, resbox);
+        contentPane.getChildren().add(box);
+    }
