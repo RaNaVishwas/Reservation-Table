@@ -206,3 +206,83 @@ public class AdminControllerVapino {
         stage.setScene(scene);
         stage.show();
     }
+@FXML
+    private void reservationsButtonClicked(ActionEvent event) {
+        configureButtons();
+        reservationsButton.setGraphic(reservationsSelectedIMV);
+
+        //Clear the content of contentPane
+        contentPane.getChildren().clear();
+
+        //Set title
+        titleLabel.setText("Reservations");
+
+        // Make box for weekly availability and reservations
+        VBox box = new VBox();
+        box.setSpacing(10);
+        box.setAlignment(Pos.TOP_CENTER);
+        box.setPrefWidth(900);
+
+        // box for availability
+        VBox abox = new VBox();
+        box.setSpacing(10);
+        box.setAlignment(Pos.TOP_CENTER);
+        box.setPrefWidth(900);
+
+        // box for reservations
+        VBox resbox = new VBox();
+        box.setSpacing(10);
+        box.setAlignment(Pos.TOP_CENTER);
+        box.setPrefWidth(900);
+
+        //set up for weekly table availability
+        Text aHeader = new Text("Tables still available");
+        aHeader.setFont(new Font("System", 24));
+
+        TableView aTable = new TableView();
+        TableColumn aDateCol = new TableColumn("Date");
+        aDateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        TableColumn tablesCol = new TableColumn("Tables Available");
+        tablesCol.setCellValueFactory(new PropertyValueFactory<>("tablesAvailable"));
+
+        //add table and title to availability box
+        abox.getChildren().addAll(aHeader, aTable);
+        abox.setSpacing(5);
+
+        //set width for all cols
+        aDateCol.setMinWidth(100);
+        tablesCol.setMinWidth(100);
+
+        aTable.getColumns().addAll(aDateCol, tablesCol);
+        //Populate data to the table view
+        operation.callDates();
+        ObservableList<Availability> adata = FXCollections.observableArrayList(operation.getWeeklyAvailability());
+        aTable.setItems(adata);
+        aTable.setMaxHeight(235);
+        aTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        //set up for reservations
+        Text resHeader = new Text("All Reservations");
+        resHeader.setFont(new Font("System", 24));
+
+        TableView resTable = new TableView();
+        TableColumn firstNameCol = new TableColumn("First Name");
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        TableColumn lastNameCol = new TableColumn("Last Name");
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        TableColumn tidCol = new TableColumn("tID");
+        tidCol.setCellValueFactory(new PropertyValueFactory<>("tID"));
+        TableColumn partySizeCol = new TableColumn("Party Size");
+        partySizeCol.setCellValueFactory(new PropertyValueFactory<>("partySize"));
+        TableColumn seatsCol = new TableColumn("Seats");
+        seatsCol.setCellValueFactory(new PropertyValueFactory<>("seats"));
+        TableColumn dateCol = new TableColumn("Reservation Date");
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
+
+        //set width for all cols
+        firstNameCol.setMinWidth(100);
+        lastNameCol.setMinWidth(100);
+        tidCol.setMinWidth(100);
+        partySizeCol.setMinWidth(100);
+        seatsCol.setMinWidth(100);
+        dateCol.setMinWidth(300);
